@@ -52,7 +52,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .bdot{width:5px;height:5px;border-radius:50%;background:currentColor;}
 
 /* MAIN */
-.main{display:grid;grid-template-columns:40% 60%;flex:1;overflow:hidden;}
+/* Updated to 50/50 split (1fr 1fr) */
+.main{display:grid;grid-template-columns:1fr 1fr;flex:1;overflow:hidden;}
 
 /* LEFT */
 .left{display:flex;flex-direction:column;border-right:1px solid var(--border);overflow:hidden;background:var(--bg2);}
@@ -61,7 +62,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .vt-btn:hover{color:var(--body);}
 .vt-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
 .diagram-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:1.25rem;overflow:hidden;}
-.cycle-svg{width:100%;max-width:400px;}
+
+/* SVG DIAGRAM - Max width increased to allow scaling up */
+.cycle-svg{width:100%;max-width:650px;}
+
 .sn{cursor:pointer;}
 .sn rect{transition:filter .12s;}
 .sn:hover rect{filter:brightness(0.96);}
@@ -200,7 +204,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
         <circle cx="200" cy="210" r="148" fill="none" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="4 6"/>
 
         <!-- Status arc legend -->
-        <circle cx="22" cy="20" r="5" fill="none" stroke="#a7e2f2" stroke-width="2"/>
+        <circle cx="22" cy="20" r="5" fill="none" stroke="#4ebad9" stroke-width="2"/>
         <text font-family="Inter,sans-serif" font-weight="600" font-size="8" fill="#6b7280" x="31" y="23">live</text>
         <circle cx="22" cy="36" r="5" fill="none" stroke="#636363" stroke-width="2" stroke-dasharray="3 3"/>
         <text font-family="Inter,sans-serif" font-weight="600" font-size="8" fill="#6b7280" x="31" y="39">in dev</text>
@@ -239,7 +243,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
         </g>
 
         <!-- FALL (right) -->
-        <circle cx="328" cy="210" r="44" fill="none" stroke="#a7e2f2" stroke-width="2" stroke-dasharray="14 28" stroke-dashoffset="0" opacity="0.8"/>
+        <circle cx="328" cy="210" r="44" fill="none" stroke="#4ebad9" stroke-width="2" stroke-dasharray="14 28" stroke-dashoffset="0" opacity="0.8"/>
         <circle cx="328" cy="210" r="44" fill="none" stroke="#636363" stroke-width="2" stroke-dasharray="14 28" stroke-dashoffset="-14" opacity="0.6"/>
         <g class="sn" id="sn-fall" onclick="showPanel('fall')" tabindex="0" role="button" aria-label="Fall: residencies">
           <rect x="270" y="178" width="116" height="64" rx="7" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2"/>
