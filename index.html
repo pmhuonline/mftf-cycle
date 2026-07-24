@@ -50,27 +50,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .badge-live{background:var(--live-bg);color:var(--live);border:1px solid #a7e2f2;}
 .badge-dev{background:var(--dev-bg);color:var(--dev);border:1px solid #d1d5db;}
 .bdot{width:5px;height:5px;border-radius:50%;background:currentColor;}
-.btn-wiki {
-  font-size: .62rem;
-  font-weight: 600;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  padding: .18rem .6rem;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  gap: .28rem;
-  background: var(--bg2);
-  color: var(--soft);
-  border: 1px solid var(--border2);
-  text-decoration: none;
-  transition: color 0.15s, border-color 0.15s;
-  margin-left: 0.5rem; /* Adds a little breathing room from the badges */
-}
-.btn-wiki:hover {
-  color: var(--body);
-  border-color: var(--body);
-}
+.btn-wiki {font-size: .62rem;font-weight: 600;letter-spacing: .05em;text-transform: uppercase;padding: .18rem .6rem;border-radius: 3px;display: flex;align-items: center;gap: .28rem;background: #fff5f5; 
+  /* Light pink background */color: var(--accent); /* Darker pink text */border: 1px solid var(--accent); /* Darker pink outline */ text-decoration: none;
+  transition: background 0.15s, color 0.15s;margin-left: 0.5rem;}
+.btn-wiki:hover { background: var(--accent); /* Flips to solid dark pink */ color: #ffffff; /* White text */}
 
 /* MAIN */
 .main{display:grid;grid-template-columns:1fr 1fr;flex:1;overflow:hidden;}
