@@ -24,7 +24,7 @@
   /* PMHU Coral/Pink Accent */
   --accent: #f05c5c; 
   
-  /* Seasonal Mappings (Unified to Accent for light theme consistency) */
+  /* Seasonal Mappings */
   --winter: var(--accent); --winter-bg: #fff5f5; --winter-lo: #fca5a5;
   --spring: var(--accent); --spring-bg: #fff5f5; --spring-lo: #fca5a5;
   --summer: var(--accent); --summer-bg: #fff5f5; --summer-lo: #fca5a5;
@@ -52,7 +52,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .bdot{width:5px;height:5px;border-radius:50%;background:currentColor;}
 
 /* MAIN */
-/* Updated to 50/50 split (1fr 1fr) */
 .main{display:grid;grid-template-columns:1fr 1fr;flex:1;overflow:hidden;}
 
 /* LEFT */
@@ -62,17 +61,27 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .vt-btn:hover{color:var(--body);}
 .vt-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
 .diagram-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:1.25rem;overflow:hidden;}
-
-/* SVG DIAGRAM - Max width increased to allow scaling up */
 .cycle-svg{width:100%;max-width:650px;}
 
-.sn{cursor:pointer;}
-.sn rect{transition:filter .12s;}
-.sn:hover rect{filter:brightness(0.96);}
-.sn.active rect{stroke-width:2px;filter:brightness(0.92);}
-.hub{cursor:pointer;}
-.hub circle{transition:fill .12s;}
-.hub:hover circle{fill:#f3f4f6;}
+/* SVG DIAGRAM INTERACTION STYLES */
+/* Removes the default browser black focus box completely */
+.sn, .hub { cursor:pointer; outline: none; }
+
+/* Custom thin gray circle on select/active */
+.node-bg { transition: stroke 0.2s, filter 0.2s; }
+.sn:hover .node-bg { filter: brightness(0.96); }
+.sn:focus .node-bg, .sn.active .node-bg {
+  stroke: #9ca3af; /* Thin gray */
+  stroke-width: 1.5px;
+  filter: brightness(0.96);
+}
+
+.hub circle.hub-bg { transition: stroke 0.2s, fill 0.2s; }
+.hub:hover circle.hub-bg { fill: #f3f4f6; }
+.hub:focus circle.hub-bg, .hub.active circle.hub-bg {
+  stroke: #9ca3af;
+  stroke-width: 1.5px;
+}
 
 /* SCALE VIEW */
 .scale-wrap{flex:1;overflow-y:auto;padding:1.1rem 1.25rem;display:none;background:var(--bg);}
@@ -167,7 +176,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 }
 @media(prefers-reduced-motion:reduce){
   .sp{animation:none;}
-  .sn rect,.hub circle{transition:none;}
+  .sn .node-bg,.hub circle{transition:none;}
 }
 </style>
 </head>
@@ -216,45 +225,45 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
         <path d="M 332 252 Q 310 314 260 344" fill="none" stroke="#d1d5db" stroke-width="1.5" marker-end="url(#arr)"/>
 
         <!-- WINTER (bottom) -->
-        <circle cx="200" cy="358" r="37" fill="none" stroke="#636363" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+        <circle cx="200" cy="358" r="58" fill="none" stroke="#636363" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
         <g class="sn" id="sn-winter" onclick="showPanel('winter')" tabindex="0" role="button" aria-label="Winter: holiday tours">
-          <rect x="142" y="334" width="116" height="48" rx="7" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2"/>
-          <text font-family="Oswald,sans-serif" font-size="14" font-weight="500" fill="#000000" x="200" y="355" text-anchor="middle">WINTER</text>
-          <text font-family="Inter,sans-serif" font-size="9" font-weight="500" fill="#f05c5c" x="200" y="371" text-anchor="middle">Holiday tours</text>
+          <circle cx="200" cy="358" r="52" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2" class="node-bg"/>
+          <text font-family="Oswald,sans-serif" font-size="14" font-weight="500" fill="#000000" x="200" y="353" text-anchor="middle">WINTER</text>
+          <text font-family="Inter,sans-serif" font-size="9" font-weight="500" fill="#f05c5c" x="200" y="369" text-anchor="middle">Holiday tours</text>
         </g>
 
         <!-- SPRING (left) -->
-        <circle cx="72" cy="210" r="44" fill="none" stroke="#636363" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+        <circle cx="72" cy="210" r="58" fill="none" stroke="#636363" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
         <g class="sn" id="sn-spring" onclick="showPanel('spring')" tabindex="0" role="button" aria-label="Spring: production and check-in tours">
-          <rect x="14" y="178" width="116" height="64" rx="7" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2"/>
-          <text font-family="Oswald,sans-serif" font-size="14" font-weight="500" fill="#000000" x="72" y="198" text-anchor="middle">SPRING</text>
-          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="72" y="213" text-anchor="middle">4-wk production</text>
-          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="72" y="227" text-anchor="middle">+ check-in tours</text>
+          <circle cx="72" cy="210" r="52" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2" class="node-bg"/>
+          <text font-family="Oswald,sans-serif" font-size="14" font-weight="500" fill="#000000" x="72" y="200" text-anchor="middle">SPRING</text>
+          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="72" y="215" text-anchor="middle">4-wk production</text>
+          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="72" y="229" text-anchor="middle">+ check-in tours</text>
         </g>
 
         <!-- SUMMER (top) -->
-        <circle cx="200" cy="68" r="48" fill="none" stroke="#636363" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+        <circle cx="200" cy="68" r="62" fill="none" stroke="#636363" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
         <g class="sn" id="sn-summer" onclick="showPanel('summer')" tabindex="0" role="button" aria-label="Summer: premiere and workshops">
-          <rect x="130" y="32" width="140" height="74" rx="7" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2"/>
-          <text font-family="Oswald,sans-serif" font-size="14" font-weight="500" fill="#000000" x="200" y="54" text-anchor="middle">SUMMER</text>
-          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="200" y="70" text-anchor="middle">Lincoln Center premiere</text>
-          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="200" y="85" text-anchor="middle">+ new workshops</text>
-          <text font-family="Inter,sans-serif" font-size="7.5" font-weight="600" fill="#4ebad9" x="200" y="99" text-anchor="middle">Creative writing: live</text>
+          <circle cx="200" cy="68" r="56" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2" class="node-bg"/>
+          <text font-family="Oswald,sans-serif" font-size="14" font-weight="500" fill="#000000" x="200" y="52" text-anchor="middle">SUMMER</text>
+          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="200" y="68" text-anchor="middle">Lincoln Center premiere</text>
+          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="200" y="83" text-anchor="middle">+ new workshops</text>
+          <text font-family="Inter,sans-serif" font-size="7.5" font-weight="600" fill="#4ebad9" x="200" y="97" text-anchor="middle">Creative writing: live</text>
         </g>
 
         <!-- FALL (right) -->
-        <circle cx="328" cy="210" r="44" fill="none" stroke="#4ebad9" stroke-width="2" stroke-dasharray="14 28" stroke-dashoffset="0" opacity="0.8"/>
-        <circle cx="328" cy="210" r="44" fill="none" stroke="#636363" stroke-width="2" stroke-dasharray="14 28" stroke-dashoffset="-14" opacity="0.6"/>
+        <circle cx="328" cy="210" r="58" fill="none" stroke="#4ebad9" stroke-width="2" stroke-dasharray="20 40" stroke-dashoffset="0" opacity="0.8"/>
+        <circle cx="328" cy="210" r="58" fill="none" stroke="#636363" stroke-width="2" stroke-dasharray="20 40" stroke-dashoffset="-20" opacity="0.6"/>
         <g class="sn" id="sn-fall" onclick="showPanel('fall')" tabindex="0" role="button" aria-label="Fall: residencies">
-          <rect x="270" y="178" width="116" height="64" rx="7" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2"/>
-          <text font-family="Oswald,sans-serif" font-size="14" font-weight="500" fill="#000000" x="328" y="198" text-anchor="middle">FALL</text>
-          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="328" y="213" text-anchor="middle">Residencies</text>
-          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="328" y="227" text-anchor="middle">4 genre tracks</text>
+          <circle cx="328" cy="210" r="52" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2" class="node-bg"/>
+          <text font-family="Oswald,sans-serif" font-size="14" font-weight="500" fill="#000000" x="328" y="200" text-anchor="middle">FALL</text>
+          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="328" y="215" text-anchor="middle">Residencies</text>
+          <text font-family="Inter,sans-serif" font-size="8.5" font-weight="500" fill="#f05c5c" x="328" y="229" text-anchor="middle">4 genre tracks</text>
         </g>
 
         <!-- CENTER HUB -->
         <g class="hub" onclick="showPanel('overview')" tabindex="0" role="button" aria-label="Overview">
-          <circle cx="200" cy="210" r="58" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5"/>
+          <circle cx="200" cy="210" r="54" fill="#ffffff" stroke="#d1d5db" stroke-width="1.5" class="hub-bg"/>
           <text font-family="Inter,sans-serif" font-size="6.5" font-weight="600" letter-spacing="0.1em" fill="#6b7280" x="200" y="194" text-anchor="middle">PROJECT: MUSIC HEALS US</text>
           <text font-family="Oswald,sans-serif" font-size="22" font-weight="500" fill="#000000" x="200" y="218" text-anchor="middle">MFTF</text>
           <text font-family="Inter,sans-serif" font-size="7.5" font-weight="500" fill="#f05c5c" x="200" y="235" text-anchor="middle">tap for overview</text>
