@@ -60,18 +60,17 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .vt-btn{flex:1;background:none;border:none;padding:.6rem 1rem;font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;}
 .vt-btn:hover{color:var(--body);}
 .vt-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
-.diagram-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:1.25rem;overflow:hidden;}
-.cycle-svg{width:100%;max-width:650px;}
+
+/* DIAGRAM CONTAINER & SVG (Updated for padding and height constraints) */
+.diagram-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:2.5rem;overflow:hidden;}
+.cycle-svg{width:100%;max-width:540px;max-height:70vh;}
 
 /* SVG DIAGRAM INTERACTION STYLES */
-/* Removes the default browser black focus box completely */
 .sn, .hub { cursor:pointer; outline: none; }
-
-/* Custom thin gray circle on select/active */
 .node-bg { transition: stroke 0.2s, filter 0.2s; }
 .sn:hover .node-bg { filter: brightness(0.96); }
 .sn:focus .node-bg, .sn.active .node-bg {
-  stroke: #9ca3af; /* Thin gray */
+  stroke: #9ca3af; 
   stroke-width: 1.5px;
   filter: brightness(0.96);
 }
