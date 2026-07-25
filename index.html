@@ -172,32 +172,27 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .gc-v strong{color:var(--head);font-weight:600;}
 
 @media(max-width:860px){
-  /* 1. Change to a vertical flex layout so panels drop below the cycle */
   body { overflow-y: auto !important; overflow-x: hidden !important; }
   .main { display: flex !important; flex-direction: column !important; }
   
-  /* 2. Force the top section to perfectly fit the iframe height */
   .left { 
     border-right: none; 
     border-bottom: 1px solid var(--border); 
-    min-height: calc(100vh - 115px); /* 100% of iframe minus the header */
     display: flex; 
     flex-direction: column; 
   }
   
-  /* 3. Let the SVG mathematically shrink instead of overflowing the bottom */
+  /* Lets the diagram pop back open natively */
   .diagram-wrap { 
-    flex: 1; 
-    padding: 10px !important; 
-    min-height: 0 !important; 
+    padding: 20px !important; 
   }
   .cycle-svg { 
     width: 100% !important; 
-    height: 100% !important; 
-    max-height: 100% !important; 
+    height: auto !important; 
+    max-height: none !important; 
   }
 
-  /* 4. The Header Stack (hides the long text, wraps the buttons) */
+  /* The Header Stack */
   .hdr {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -208,7 +203,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
   .hdr-div, .hdr-eye { display: none !important; }
   .hdr-badges { margin-left: 0 !important; flex-wrap: wrap !important; }
 
-  /* 5. Scale Pathway Table (allows horizontal swiping so it doesn't squish) */
+  /* Scale Pathway Table */
   .scale-wrap { overflow-x: auto !important; padding: 15px !important; }
   .sc-grid { min-width: 650px !important; }
   
