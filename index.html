@@ -187,10 +187,35 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .gc-v strong{color:var(--head);font-weight:600;}
 
 @media(max-width:860px){
+  /* Your existing mobile layout rules */
   body{overflow:auto;}
   .main{grid-template-columns:1fr;}
   .left{border-right:none;border-bottom:1px solid var(--border);}
   .right{min-height:60vh;}
+  
+  /* 1. The Header Fix (Forces elements to stack instead of squeeze) */
+  .hdr {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+  .hdr-div, .hdr-eye {
+    display: none; /* Hides the long text to save screen space */
+  }
+  .hdr-badges {
+    margin-left: 0; /* Overrides the desktop right-alignment */
+    flex-wrap: wrap;
+  }
+  
+  /* 2. The Diagram Fix (Using your exact class names) */
+  .diagram-wrap {
+    padding: 1.5rem !important;
+  }
+  .cycle-svg {
+    width: 100% !important;
+    height: auto !important;
+  }
 }
 @media(prefers-reduced-motion:reduce){
   .sp{animation:none;}
