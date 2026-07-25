@@ -163,8 +163,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .gc-v{font-size:.75rem;color:var(--body);}
 .gc-v strong{color:var(--head);font-weight:600;}
 
-@media(max-width:860px){
-  /* 1. Lock the page bounds so the iframe doesn't stretch or bounce */
+/* --- NATIVE APP OVERLAY --- */
+@media(max-width:720px){
+  /* 1. Lock the bounds */
   html, body { height: 100% !important; overflow: hidden !important; }
   
   /* 2. Make the main container the absolute boundary */
@@ -203,7 +204,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
   }
   
   /* Sticks the close button to the top of the overlay */
-  .ph { position: sticky !important; top: 0 !important; z-index: 105 !important; background: var(--bg) !important; }
+  .ph { position: sticky !important; top: 0 !important; z-index: 105 !important; background: var(--bg) !important; border-bottom: 1px solid var(--border) !important;}
 }
 </style>
 </head>
