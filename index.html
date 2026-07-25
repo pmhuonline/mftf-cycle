@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,10 +80,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .hub:focus circle.hub-bg, .hub.active circle.hub-bg { stroke: #9ca3af; stroke-width: 1.5px; }
 
 /* SCALE VIEW */
-.scale-wrap{flex:1;overflow-y:auto;padding:1.1rem 1.25rem;display:none;background:var(--bg);}
+.scale-wrap{flex:1;overflow:auto;padding:1.1rem 1.25rem;display:none;background:var(--bg);}
 .scale-wrap.visible{display:block;}
-.sc-grid{display:grid;grid-template-columns:80px repeat(4,1fr);gap:.4rem;margin-bottom:.4rem;align-items:start;}
-.sc-head{font-size:.62rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.45rem .55rem;border-radius:4px;text-align:center;line-height:1.4;background:var(--bg2);color:var(--head);border:1px solid var(--border2);}
+.pathway{display:grid;grid-template-columns:80px repeat(4,1fr);gap:.4rem;align-items:start;}
+.sc-corner{background:var(--bg);position:sticky;top:0;z-index:3;}
+.sc-head{font-size:.62rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.45rem .55rem;border-radius:4px;text-align:center;line-height:1.4;background:var(--bg2);color:var(--head);border:1px solid var(--border2);position:sticky;top:0;z-index:2;}
 .sc-now{border-color:var(--accent);color:var(--accent);background:var(--winter-bg);}
 .sr-label{font-size:.6rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding-top:.4rem;line-height:1.4;}
 .sr-cell{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:.5rem .55rem;font-size:.7rem;color:var(--soft);line-height:1.55;}
@@ -183,7 +185,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
   
   /* 5. Scale Pathway Table scrolling */
   .scale-wrap { overflow: auto !important; -webkit-overflow-scrolling: touch !important; padding: 15px !important; }
-  .sc-grid { min-width: 650px !important; }
+  .pathway { min-width: 650px !important; }
 
   /* 6. APP OVERLAY MAGIC */
   .right { position: static !important; }
@@ -302,49 +304,43 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 
     <!-- SCALE PATHWAY VIEW -->
     <div class="scale-wrap" id="view-scale">
-      <div class="sc-grid">
-        <div></div>
+      <div class="pathway">
+        <div class="sc-corner"></div>
         <div class="sc-head sc-now">Now · Pilot</div>
-        <div class="sc-head sc-3yr">3 Years · Regional</div>
-        <div class="sc-head sc-5yr">5 Years · Multi-region</div>
-        <div class="sc-head sc-10yr">10 Years · National</div>
-      </div>
-      <div class="sc-grid">
+        <div class="sc-head">3 Years · Regional</div>
+        <div class="sc-head">5 Years · Multi-region</div>
+        <div class="sc-head">10 Years · National</div>
+
         <div class="sr-label">Reach</div>
         <div class="sr-cell"><ul><li>12–16 facility partners</li><li>1–2 core geographies</li></ul></div>
         <div class="sr-cell"><ul><li>24 facility partners</li><li>3 geographies, 8 each</li></ul></div>
         <div class="sr-cell"><ul><li>32 facility partners</li><li>4 geographies, 8 each</li></ul></div>
         <div class="sr-cell"><ul><li>50 facility partners</li><li>National footprint</li></ul></div>
-      </div>
-      <div class="sc-grid">
+
         <div class="sr-label">Annual cycle</div>
         <div class="sr-cell"><ul><li>Holiday tour + celebration concerts</li><li>Spring check-in / touchpoint</li></ul></div>
         <div class="sr-cell"><ul><li>Holiday tour per geography</li><li>Standardized check-in model</li><li>Year-round cadence</li></ul></div>
         <div class="sr-cell"><ul><li>4-geography holiday tour</li><li>Repeat engagements deepen trust</li></ul></div>
         <div class="sr-cell"><ul><li>Holiday + spring cycles nationwide</li><li>Flagship premiere moments</li><li>Drop-in/maintenance workshops</li></ul></div>
-      </div>
-      <div class="sc-grid">
+
         <div class="sr-label">Program mix</div>
         <div class="sr-cell"><ul><li>Classical ✓ live</li><li>Creative writing ✓ live</li><li>Songwriting: emerging</li><li>Jazz: build by yr 3</li></ul></div>
         <div class="sr-cell"><ul><li>Jazz + songwriting operational</li><li>Begin piloting Musical Theatre</li><li>Min. 4 venues per category</li></ul></div>
         <div class="sr-cell"><ul><li>Multiple categories reliably</li><li>Clear pathways by facility fit</li><li>Larger touring roster</li></ul></div>
         <div class="sr-cell"><ul><li>Full portfolio at maturity</li><li>10 courses/category/year</li><li>Short residencies + accreditation</li></ul></div>
-      </div>
-      <div class="sc-grid">
+
         <div class="sr-label">Building</div>
         <div class="sr-cell"><ul><li>Replicable program units</li><li>Clear partner expectations</li></ul></div>
         <div class="sr-cell"><ul><li>Artist pipeline: recruit → audition → train</li><li>Curriculum scaling system</li></ul></div>
         <div class="sr-cell"><ul><li>Regional delivery capacity</li><li>Retention systems</li></ul></div>
         <div class="sr-cell"><ul><li>National delivery engine</li><li>Evidence + storytelling system</li></ul></div>
-      </div>
-      <div class="sc-grid">
+
         <div class="sr-label">Cost drivers</div>
         <div class="sr-cell" style="color:var(--muted);font-size:.7rem;">Artists, Travel, Staff time, Curriculum</div>
         <div class="sr-cell" style="color:var(--muted);font-size:.7rem;">Training, Recruitment, Logistics, Evaluation</div>
         <div class="sr-cell" style="color:var(--muted);font-size:.7rem;">Multi-region touring, Expanded roster, Partner support</div>
         <div class="sr-cell" style="color:var(--muted);font-size:.7rem;">National operations, Curriculum portfolio, Measurement + media</div>
-      </div>
-      <div class="sc-grid">
+
         <div class="sr-label">Locations</div>
         <div class="sr-cell"><ul><li>CA (Chowchilla, Bay Area)</li><li>CT, NV expanding</li></ul></div>
         <div class="sr-cell"><ul><li>NY (10 venues)</li><li>CT (10 venues)</li><li>CA (10+ venues)</li></ul></div>
