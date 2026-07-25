@@ -171,41 +171,45 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .gc-v{font-size:.75rem;color:var(--body);}
 .gc-v strong{color:var(--head);font-weight:600;}
 
-@media(max-width:860px){
-  /* 1. Lock the page bounds so the iframe doesn't fight the mobile browser */
-  html, body { height: 100% !important; overflow: hidden !important; }
-  
-  /* 2. Set the main container as the boundary for our overlay */
-  .main { position: relative !important; display: flex !important; flex-direction: column !important; flex: 1 !important; }
-  .left { border-right: none !important; border-bottom: none !important; flex: 1 !important; display: flex !important; flex-direction: column !important; min-height: 0 !important; }
-  
-  /* 3. Keep the SVG perfectly contained so it never gets cut off */
-  .diagram-wrap { flex: 1 !important; padding: 15px !important; min-height: 0 !important; display: flex !important; }
-  .cycle-svg { width: 100% !important; height: 100% !important; max-height: 100% !important; }
-  
-  /* 4. The Header Stack */
-  .hdr { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; padding: 12px 15px !important; height: auto !important; flex-shrink: 0 !important; }
-  .hdr-div, .hdr-eye { display: none !important; }
-  .hdr-badges { margin-left: 0 !important; flex-wrap: wrap !important; }
-  
-  /* 5. Scale Pathway Table scrolling */
-  .scale-wrap { overflow: auto !important; -webkit-overflow-scrolling: touch !important; padding: 15px !important; }
-  .sc-grid { min-width: 650px !important; }
+/* Hides breakout on desktop */
+.mobile-breakout { display: none; }
 
-  /* 6. THE MAGIC: Hide the empty message, and make panels act as full-cover popups */
-  .right { position: static !important; }
-  .p-empty { display: none !important; }
+@media(max-width:860px){
+  /* Hide the complex layout entirely on mobile */
+  .main, .hdr-badges { display: none !important; }
   
-  .sp.visible {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: var(--bg) !important;
-    z-index: 100 !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
+  /* Simplify the header */
+  .hdr { justify-content: center !important; text-align: center !important; padding: 20px 15px !important; }
+  .hdr-eye { display: none !important; }
+  
+  /* Show the breakout button */
+  .mobile-breakout {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 20px;
+    gap: 15px;
+    background: var(--bg);
+    height: 100%;
+  }
+  .mobile-breakout p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .breakout-btn {
+    background: var(--accent);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 6px rgba(240, 92, 92, 0.2);
   }
 }
 </style>
@@ -222,6 +226,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
     <a href="https://pmhuonline.github.io/mftf-cycle/" target="_blank" class="btn-wiki">New Window ↗&#xFE0E;</a>
   </div>
 </header>
+
+<div class="mobile-breakout">
+  <p>For the best mobile experience, view the full layout.</p>
+  <a href="https://pmhuonline.github.io/mftf-cycle/" target="_blank" class="breakout-btn">Open Interactive Diagram ↗&#xFE0E;</a>
+</div>
 
 <div class="main">
   <!-- LEFT -->
