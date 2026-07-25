@@ -172,42 +172,26 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .gc-v strong{color:var(--head);font-weight:600;}
 
 @media(max-width:860px){
-  body { overflow-y: auto !important; overflow-x: hidden !important; }
-  .main { display: flex !important; flex-direction: column !important; }
+  /* 1. Kill the desktop height locks so the whole page scrolls naturally */
+  html, body { height: auto !important; overflow: visible !important; overflow-x: hidden !important; }
   
-  .left { 
-    border-right: none; 
-    border-bottom: 1px solid var(--border); 
-    display: flex; 
-    flex-direction: column; 
-  }
+  /* 2. Break the grid and stack everything as solid blocks */
+  .main { display: block !important; }
+  .left { border-right: none; border-bottom: 1px solid var(--border); min-height: auto !important; display: block !important; }
+  .right { min-height: auto !important; overflow: visible !important; }
   
-  /* Lets the diagram pop back open natively */
-  .diagram-wrap { 
-    padding: 20px !important; 
-  }
-  .cycle-svg { 
-    width: 100% !important; 
-    height: auto !important; 
-    max-height: none !important; 
-  }
+  /* 3. Give the SVG a hard minimum height so the iframe CANNOT crush it */
+  .diagram-wrap { padding: 20px !important; min-height: 400px !important; display: flex !important; }
+  .cycle-svg { width: 100% !important; height: auto !important; max-height: none !important; }
 
-  /* The Header Stack */
-  .hdr {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
-    padding: 12px 15px !important;
-    height: auto !important;
-  }
+  /* 4. The Header Stack */
+  .hdr { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; padding: 12px 15px !important; height: auto !important; }
   .hdr-div, .hdr-eye { display: none !important; }
   .hdr-badges { margin-left: 0 !important; flex-wrap: wrap !important; }
 
-  /* Scale Pathway Table */
+  /* 5. Scale Pathway Table */
   .scale-wrap { overflow-x: auto !important; padding: 15px !important; }
   .sc-grid { min-width: 650px !important; }
-  
-  .right { min-height: auto; }
 }
 </style>
 </head>
