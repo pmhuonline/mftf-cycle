@@ -15,22 +15,22 @@
   --bg3: #ffffff;
   --border: #e5e7eb; 
   --border2: #d1d5db;
-  
+
   /* Typography Colors */
   --muted: #6b7280; 
   --soft: #4b5563; 
   --body: #000000; 
   --head: #000000;
-  
+
   /* PMHU Coral/Pink Accent */
   --accent: #f05c5c; 
-  
+
   /* Seasonal Mappings */
   --winter: var(--accent); --winter-bg: #fff5f5; --winter-lo: #fca5a5;
   --spring: var(--accent); --spring-bg: #fff5f5; --spring-lo: #fca5a5;
   --summer: var(--accent); --summer-bg: #fff5f5; --summer-lo: #fca5a5;
   --fall: var(--accent);   --fall-bg: #fff5f5;   --fall-lo: #fca5a5;
-  
+
   /* Status Badges */
   --live: #4ebad9; 
   --dev: #636363; 
@@ -125,9 +125,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .cbb li{padding-left:.9rem;position:relative;}
 .cbb li::before{content:"—";position:absolute;left:0;color:var(--accent);font-size:.68rem;font-weight:bold;}
 
-/* Week grid */
+/* Row grid (reused for weekly cadence + curriculum slots) */
 .wg{display:flex;flex-direction:column;gap:.45rem;margin-top:.65rem;}
-.wr{display:grid;grid-template-columns:54px 1fr;gap:.65rem;align-items:start;}
+.wr{display:grid;grid-template-columns:60px 1fr;gap:.65rem;align-items:start;}
 .wn{font-size:.6rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:var(--spring-bg);border:1px solid var(--spring-lo);border-radius:4px;padding:.28rem .35rem;text-align:center;line-height:1.35;}
 .wd{font-size:.78rem;color:var(--body);line-height:1.6;padding-top:.18rem;}
 
@@ -138,7 +138,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .tag-dev{background:var(--dev-bg);color:var(--dev);border:1px solid #d1d5db;}
 .tag-n{background:var(--bg3);color:var(--soft);border:1px solid var(--border2);}
 
-/* Course cards */
+/* Card grid (course / curriculum cards) */
 .cg{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin-top:.65rem;}
 .cc{background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:.65rem .75rem;}
 .cc-name{font-size:.75rem;font-weight:600;color:var(--head);margin-bottom:.3rem;display:flex;align-items:center;gap:.35rem;}
@@ -169,20 +169,20 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 @media(max-width:720px){
   /* 1. Lock the bounds */
   html, body { height: 100% !important; overflow: hidden !important; }
-  
+
   /* 2. Make the main container the absolute boundary */
   .main { position: relative !important; display: flex !important; flex-direction: column !important; flex: 1 !important; }
   .left { border: none !important; flex: 1 !important; display: flex !important; flex-direction: column !important; min-height: 0 !important; }
-  
+
   /* 3. Keep the SVG perfectly contained in the available space */
   .diagram-wrap { flex: 1 !important; padding: 15px !important; min-height: 0 !important; display: flex !important; align-items: center !important; justify-content: center !important; }
   .cycle-svg { width: 100% !important; height: 100% !important; max-height: 100% !important; }
-  
+
   /* 4. Header Stack */
   .hdr { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; padding: 12px 15px !important; height: auto !important; flex-shrink: 0 !important; }
   .hdr-div, .hdr-eye { display: none !important; }
   .hdr-badges { margin-left: 0 !important; flex-wrap: wrap !important; }
-  
+
   /* 5. Scale Pathway Table scrolling */
   .scale-wrap { overflow: auto !important; -webkit-overflow-scrolling: touch !important; padding: 15px !important; }
   .pathway { min-width: 650px !important; }
@@ -190,7 +190,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
   /* 6. APP OVERLAY MAGIC */
   .right { position: static !important; }
   .p-empty { display: none !important; }
-  
+
   /* When a panel is active, it completely covers the main area */
   .sp.visible {
     position: absolute !important;
@@ -204,7 +204,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
     -webkit-overflow-scrolling: touch !important;
     padding-bottom: 20px;
   }
-  
+
   /* Sticks the close button to the top of the overlay */
   .ph { position: sticky !important; top: 0 !important; z-index: 105 !important; border-bottom: 1px solid var(--border) !important;}
 }
