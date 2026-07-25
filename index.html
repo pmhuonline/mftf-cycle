@@ -172,47 +172,47 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
 .gc-v strong{color:var(--head);font-weight:600;}
 
 @media(max-width:860px){
-  body { overflow: auto !important; }
-  .main { grid-template-columns: 1fr; display: block; }
-  .left { border-right: none; border-bottom: 1px solid var(--border); }
-  .right { min-height: auto; }
+  /* 1. Change to a vertical flex layout so panels drop below the cycle */
+  body { overflow-y: auto !important; overflow-x: hidden !important; }
+  .main { display: flex !important; flex-direction: column !important; }
+  
+  /* 2. Force the top section to perfectly fit the iframe height */
+  .left { 
+    border-right: none; 
+    border-bottom: 1px solid var(--border); 
+    min-height: calc(100vh - 115px); /* 100% of iframe minus the header */
+    display: flex; 
+    flex-direction: column; 
+  }
+  
+  /* 3. Let the SVG mathematically shrink instead of overflowing the bottom */
+  .diagram-wrap { 
+    flex: 1; 
+    padding: 10px !important; 
+    min-height: 0 !important; 
+  }
+  .cycle-svg { 
+    width: 100% !important; 
+    height: 100% !important; 
+    max-height: 100% !important; 
+  }
 
-  /* 1. The Header Fix (Forces the stack, hides long text) */
+  /* 4. The Header Stack (hides the long text, wraps the buttons) */
   .hdr {
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 10px !important;
-    padding: 15px !important;
+    gap: 8px !important;
+    padding: 12px 15px !important;
     height: auto !important;
   }
-  .hdr-div, .hdr-eye {
-    display: none !important; 
-  }
-  .hdr-badges {
-    margin-left: 0 !important;
-    flex-wrap: wrap !important;
-  }
+  .hdr-div, .hdr-eye { display: none !important; }
+  .hdr-badges { margin-left: 0 !important; flex-wrap: wrap !important; }
 
-  /* 2. Diagram Anti-Cropping Fix (Stops the top from getting chopped off) */
-  .diagram-wrap {
-    padding: 20px !important;
-    align-items: flex-start !important; 
-    min-height: 350px;
-  }
-  .cycle-svg {
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important; 
-  }
-
-  /* 3. Scale Pathway Table Fix (Allows horizontal swiping instead of squishing) */
-  .scale-wrap {
-    overflow-x: auto !important;
-    padding: 15px !important;
-  }
-  .sc-grid {
-    min-width: 650px !important; /* Forces the table to stay wide enough to read */
-  }
+  /* 5. Scale Pathway Table (allows horizontal swiping so it doesn't squish) */
+  .scale-wrap { overflow-x: auto !important; padding: 15px !important; }
+  .sc-grid { min-width: 650px !important; }
+  
+  .right { min-height: auto; }
 }
 </style>
 </head>
@@ -225,7 +225,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--body);displ
   <div class="hdr-badges">
     <div class="badge badge-live"><span class="bdot"></span>Live now</div>
     <div class="badge badge-dev"><span class="bdot"></span>In development</div>
-    <a href="https://pmhuonline.github.io/mftf-cycle/" target="_blank" class="btn-wiki">New Window ↗&#xFE0E</a>
+    <a href="https://pmhuonline.github.io/mftf-cycle/" target="_blank" class="btn-wiki">New Window ↗&#xFE0E;</a>
   </div>
 </header>
 
